@@ -1,170 +1,96 @@
-# 📋 LOGÍSTICA DEL EVENTO
-## Boda Alan & Lupita - 30 de Mayo 2026
+# LOGISTICA DEL EVENTO
+## Boda Juan Pablo & Maria Jose - 27 de Junio 2026
 
 ---
 
-## 💑 DATOS DE LOS NOVIOS
-
-### Novia
-- **Nombre:** Patricia Lupita Martinez Becerra
-- **Teléfono:** 477 591 6373
-- **Dirección:** Veracruz 1716, León, Guanajuato
+## DATOS DE LOS NOVIOS
 
 ### Novio
-- **Nombre:** Mateus Sebastian Alan Cordova Huerta
-- **Teléfono:** Por confirmar
-- **Dirección:** Por confirmar
+- **Nombre:** Juan Pablo Posada Cruces
+- **Padres:** Jose Guadalupe Posada Cruces y Juana Magdalena Oliva Castillo
 
-### Padres de la Novia
-- **Padre:** Ramón Martínez Espinoza
-- **Madre:** Patricia Becerra Pacheco
+### Novia
+- **Nombre:** Maria Jose Duran Mora
+- **Padres:** Antonio Duran Torres y Teresita Mora Llanos
 
-### Padres del Novio
-- Por confirmar
+### Contacto
+- **Irazu Duran Mora** (hermana de la novia)
 
 ---
 
-## 📅 CRONOGRAMA DEL EVENTO
+## CRONOGRAMA DEL EVENTO
 
 ### Fecha del Evento
-**23 de Mayo de 2026**
+**Sabado 27 de Junio de 2026**
 
 ### Ceremonia Religiosa
 - **Lugar:** Parroquia San Juan Bautista de la Salle
-- **Dirección:** León, Guanajuato
-- **Hora:** 5:00 PM
-- **Duración estimada:** 1 hora
+- **Direccion:** Leon, Guanajuato
+- **Hora:** 4:00 PM
+- **Duracion estimada:** 1 hora
 
-### Recepción
-- **Lugar:** Salón Valantains
-- **Dirección:** Hilario Medina, León, Guanajuato
-- **Hora:** Por confirmar
-- **Duración:** 5 horas
-
-### Número de Invitados
-- **Total:** 250 invitados
+### Recepcion
+- **Lugar:** Quinta Palomares
+- **Direccion:** Leon, Guanajuato
+- **Hora:** 6:00 PM
 
 ---
 
-## 📸 SERVICIOS DE FOTOGRAFÍA Y VIDEO
+## SERVICIOS DE FOTOGRAFIA Y VIDEO
 
 ### Proveedor
-- **Fotógrafo/Videógrafo:** Arturo Cruz
-- **Teléfono:** 477-920-3776
-- **Cuenta BBVA:** 4152 3137 6890 8985 - Juan Arturo
+- **Fotografo/Videografo:** Arturo Cruz
+- **Telefono:** 477-920-3776
 
 ### Paquete Contratado
-**PAQUETE DE FOTOGRAFÍA Y VIDEO - $6,000 MXN**
+**PAQUETE DE FOTOGRAFIA Y VIDEO + INVITACION WEB**
 
 #### Incluye:
-✅ Cobertura por Sesión, misa y 5 horas de fiesta
-✅ 100 Fotos del evento impresas en tamaño 5x7 pulgadas
-✅ 1 Película USB editada, musicalizada y titulada
-✅ 1 Videoclip para proyectar en el salón
-✅ 1 Caja impresa para la USB
-✅ 1 Foto Ampliada tamaño 50x60 cm con marco
-✅ 1 Caja impresa para las fotografías
-✅ 1 Sesión fotográfica antes o el día del evento
-
-#### Cobertura:
-- **Ceremonia:** 1 hora
-- **Recepción:** 5 horas
-- **Total:** 6 horas de cobertura
-
-#### Servicios Adicionales Contratados:
-✅ **Invitación Web:** $500 MXN
-
-#### Servicios NO incluidos (disponibles):
-- ❌ Tomas de dron (disponible por $500 adicionales)
-- ❌ Hora extra ($500 por hora adicional)
+- Sesion fotografica antes o el dia del evento
+- Cobertura de ceremonia religiosa
+- Cobertura de recepcion
+- Fotografias del evento impresas
+- Pelicula USB editada, musicalizada y titulada
+- Clip de video resumen
+- Clip de video de fotos editado y musicalizado
+- Ampliacion con marco
+- Caja impresa para la USB
+- Invitacion Web personalizada
 
 ### Forma de Pago
-- **Anticipo realizado:** $1,000 MXN (02/02/2026) ✅
-- **Saldo pendiente:** $5,500 MXN
-- **Fecha límite de pago:** 22/05/2026 (8 días antes del evento)
-- **Método de pago:** Transferencia bancaria a cuenta BBVA
-- **TOTAL:** $6,500 MXN
+- **Anticipo:** Pendiente
+- **Saldo pendiente:** Pendiente
+- **Fecha limite de pago:** 19/06/2026 (8 dias antes del evento)
 
 ---
 
-## 🎨 TEMÁTICA DEL EVENTO
+## PADRINOS
 
-**Por confirmar**
-
----
-
-## ✅ CHECKLIST DE PREPARATIVOS
-
-### 8 Semanas Antes (Principios de Abril 2026)
-- [x] Confirmar lugar de ceremonia religiosa
-- [x] Confirmar lugar de recepción
-- [ ] Confirmar hora de ingreso al salón
-- [ ] Coordinar sesión fotográfica previa
-
-### 4 Semanas Antes (Principios de Mayo 2026)
-- [ ] Revisar detalles de decoración
-- [ ] Confirmar menú y número de invitados
-- [ ] Coordinar logística del día con fotógrafo
-
-### 2 Semanas Antes (Mediados de Mayo 2026)
-- [ ] Confirmar todos los proveedores
-- [ ] Coordinar horarios de llegada del equipo fotográfico
-- [ ] Entregar fotos para videoclip
-
-### 8 Días Antes (22 de Mayo 2026)
-- [ ] **LIQUIDAR SALDO DE FOTOGRAFÍA Y VIDEO ($5,500 MXN)**
-- [ ] Confirmar detalles finales con todos los proveedores
-
-### 1 Día Antes (29 de Mayo 2026)
-- [ ] Verificar que todo esté listo en Salón Valantains
-- [ ] Confirmar horarios con fotógrafo
-- [ ] Preparar lista de fotos específicas deseadas
-
-### Día del Evento (30 de Mayo 2026)
-- [ ] Sesión fotográfica (hora por confirmar)
-- [ ] Ceremonia religiosa 5:00 PM
-- [ ] Recepción en Salón Valantains
-- [ ] Proyección de videoclip durante la recepción
+| Rol | Padrinos |
+|-----|----------|
+| Velacion | Jose Delgado & Juana Hortencia Posada Cruces |
+| Cristo | Antonio Duran Torres & Teresita Mora Llanos |
+| Arras | Jose Mora & Patricia Luna |
+| Anillos | Franco Arenas & Andrea Anguiano |
+| Biblia y Rosario | Antonio Duran Mora & Irazu Duran Mora |
+| Cojines | Manuel Mora & Ma. Elena Gonzalez |
+| Album | Lucia Mora |
+| Ramo | Isabela Aguirre, Esmeralda Mora & Patricia Posada |
 
 ---
 
-## 📞 CONTACTOS IMPORTANTES
+## CHECKLIST
 
-### Novios
-- Lupita: 477 591 6373
-- Alan: Por confirmar
-
-### Fotografía y Video
-- Arturo Cruz: 477-920-3776
-
-### Lugar de Recepción
-- Salón Valantains: Por confirmar
-
-### Ceremonia
-- Parroquia San Juan Bautista de la Salle
+### Pendientes
+- [ ] Definir paquete y precio
+- [ ] Recibir anticipo
+- [ ] Programar sesion fotografica previa
+- [ ] Fotos de la pareja para videoclip
+- [ ] Direccion exacta de la iglesia (Google Maps)
+- [ ] Direccion exacta de Quinta Palomares (Google Maps)
+- [ ] Liquidacion del saldo - 19/06/2026
 
 ---
 
-## 📝 NOTAS ADICIONALES
-
-1. **Invitación Digital:** Se ha creado una invitación web personalizada (boda-alan-lupita.invitados.org)
-2. **Sesión Previa:** Coordinar con Arturo Cruz para la sesión fotográfica previa al evento (mínimo 15 días antes)
-3. **Videoclip:** El videoclip de la sesión previa se proyectará durante la recepción
-4. **Entregables:** Las fotos y video editado se entregarán 30-60 días después del evento
-5. **Referencia:** Cliente referida por boda del 13 de diciembre en Salón El Mirador
-
----
-
-## 🎯 PRÓXIMOS PASOS INMEDIATOS
-
-1. ✅ Anticipo de fotografía pagado ($1,000) - 02/02/2026
-2. 🔄 Confirmar hora de ingreso al salón
-3. 🔄 Obtener nombres de padres del novio
-4. 🔄 Programar sesión fotográfica previa
-5. 🔄 Definir temática/colores del evento
-6. 🔄 Preparar pago final ($5,500) para entregar el 22/05/2026
-
----
-
-**Última actualización:** 03 de Febrero 2026
-**Responsable:** Arturo Cruz - Fotografía y Video
+**Ultima actualizacion:** 12 de Mayo 2026
+**Responsable:** Arturo Cruz - Foro 7 Producciones
