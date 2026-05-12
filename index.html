@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda — Juan Pablo &amp; Mar&iacute;a Jos&eacute; — 27 de Junio 2026</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='80'>💍</text></svg>">
+
+    <!-- Fuentes actualizadas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mr+De+Haviland&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ── SPLASH ── */
+        .splash-screen { position:fixed; inset:0; z-index:10000; background:linear-gradient(135deg,#1a0a1a 0%,#2d0a2d 100%); display:flex; align-items:center; justify-content:center; transition:opacity .8s ease, visibility .8s ease; }
+        .splash-screen.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+        .splash-content { text-align:center; padding:2rem; }
+        .splash-icon { font-size:3rem; animation:splashFloat 3s ease-in-out infinite; }
+        @keyframes splashFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+        .splash-subtitle { font-size:.85rem; letter-spacing:.35em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:1.5rem; }
+        .splash-names { font-size:clamp(2.2rem,7vw,4rem); color:#c9a84c; margin:.5rem 0; font-family:'Cormorant Garamond',serif; }
+        .splash-divider { width:120px; height:1px; background:linear-gradient(90deg,transparent,#c9a84c,transparent); margin:1rem auto; }
+        .splash-date { font-size:.95rem; letter-spacing:.15em; color:rgba(255,255,255,0.5); }
+        .splash-btn { display:inline-block; margin-top:2.5rem; padding:1rem 3rem; background:transparent; border:2px solid #c9a84c; border-radius:50px; color:#c9a84c; font-size:1rem; font-weight:600; letter-spacing:.1em; cursor:pointer; transition:all .3s; }
+        .splash-btn:hover { background:#c9a84c; color:#1a0a1a; transform:translateY(-3px); }
+        .splash-hint { font-size:.75rem; color:rgba(255,255,255,0.5); margin-top:1rem; opacity:.5; }
+
+        /* ── RSVP ── */
+        #rsvp { padding: 60px 20px; background: rgba(0,0,0,0.3); }
+        #rsvp .section-title { text-align:center; margin-bottom:10px; }
+        .rsvp-form { max-width: 500px; margin: 0 auto; background: rgba(255,255,255,0.08); border-radius: 16px; padding: 32px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display:block; margin-bottom:6px; font-size:.9rem; opacity:.85; }
+        .form-group input,
+        .form-group select,
+        .form-group textarea { width:100%; padding:12px 14px; border:1px solid rgba(255,255,255,0.25); border-radius:8px; background:rgba(255,255,255,0.1); color:inherit; font-size:1rem; font-family:inherit; }
+        .form-group textarea { min-height:80px; resize:vertical; }
+        #successMessage { display:none; text-align:center; padding:24px; background:rgba(16,185,129,.15); border:1px solid #10b981; border-radius:12px; color:#6ee7b7; font-size:1.05rem; margin-top:16px; }
+    </style>
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <div class="splash-icon">💍</div>
+            <p class="splash-subtitle" id="splashSubtitle">Est&aacute;s invitado(a) a la boda de</p>
+            <h1 class="splash-names">Juan Pablo & Mar&iacute;a Jos&eacute;</h1>
+            <div class="splash-divider"></div>
+            <p class="splash-date" id="splashDate">27 de Junio, 2026</p>
+            <p id="splashGuest" style="display:none;font-size:1.6rem;font-family:'Cormorant Garamond',serif;margin:.3rem 0;"></p>
+            <p id="splashPases" style="display:none;opacity:.75;font-size:.9rem;margin:.2rem 0 1rem;"></p>
+            <button class="splash-btn" id="openInvitation">
+                <span>Abrir Invitación</span>
+            </button>
+            <p class="splash-hint">Toca para abrir</p>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-heart">💒</div>
+        <p class="loading-text">Juan Pablo & Mar&iacute;a Jos&eacute;</p>
+    </div>
+
+    <!-- Música de fondo -->
+    <audio id="background-music" loop>
+        <source src="musica-fondo.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Botón de música -->
+    <button id="music-toggle" class="music-btn" aria-label="Controlar música">
+        <i id="music-icon" class="fas fa-volume-mute"></i>
+    </button>
+
+    <!-- Navigation Dots -->
+    <nav class="nav-dots" id="navDots" aria-label="Navegación de secciones">
+        <button class="nav-dot active" data-section="initial" data-label="Inicio" aria-label="Ir a inicio"></button>
+        <button class="nav-dot" data-section="parents" data-label="Padres" aria-label="Ir a padres"></button>
+        <button class="nav-dot" data-section="quote" data-label="Mensaje" aria-label="Ir a mensaje"></button>
+        <button class="nav-dot" data-section="countdown" data-label="Cuenta Regresiva" aria-label="Ir a cuenta regresiva"></button>
+        <button class="nav-dot" data-section="ceremony" data-label="Ceremonia" aria-label="Ir a ceremonia"></button>
+        <button class="nav-dot" data-section="reception" data-label="Recepción" aria-label="Ir a recepción"></button>
+        <button class="nav-dot" data-section="dresscode" data-label="Vestimenta" aria-label="Ir a vestimenta"></button>
+        <button class="nav-dot" data-section="gifts" data-label="Regalos" aria-label="Ir a regalos"></button>
+        <button class="nav-dot" data-section="social" data-label="Redes" aria-label="Ir a redes sociales"></button>
+        <button class="nav-dot" data-section="info" data-label="Info" aria-label="Ir a información"></button>
+    </nav>
+
+    <!-- FIXED DECORATIONS - Stay in place throughout entire page -->
+    <div class="fixed-background">
+        <div class="floral-decoration top-left">
+            <img src="rosa-izquierda.png" alt="" aria-hidden="true">
+        </div>
+        <div class="floral-decoration bottom-right">
+            <img src="rosa-derecha.png" alt="" aria-hidden="true">
+        </div>
+        <div class="geometric-frame"></div>
+    </div>
+
+    <!-- TRANSITIONING CONTENT SECTIONS -->
+    <main class="content-wrapper">
+
+        <!-- 1. Hero Section INICIAL -->
+        <section class="content-section active" data-section="initial">
+            <div class="hero-content">
+                <p class="hero-subtitle">CON LA BENDICI&Oacute;N DE DIOS Y DE SUS PADRES</p>
+                <h1 class="hero-title">NOS CASAMOS</h1>
+
+                <div class="couple-names-container">
+                    <h2 class="couple-names">
+                        Juan Pablo <br>
+                        <span class="ampersand-small">y</span> <br>
+                        Mar&iacute;a Jos&eacute;
+                    </h2>
+                </div>
+
+                <div class="date-container">
+                    <p class="date-month">JUNIO</p>
+                    <div class="date-row">
+                        <span class="date-day">S&Aacute;BADO</span>
+                        <span class="date-number">27</span>
+                        <span class="date-time">4:00pm</span>
+                    </div>
+                </div>
+
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 2. Parents Section -->
+        <section class="content-section" data-section="parents">
+            <div class="hero-content">
+                <p class="hero-subtitle">CON LA BENDICI&Oacute;N DE SUS PADRES</p>
+                <h1 class="hero-title">NUESTROS PADRES</h1>
+
+                <div class="parents-hero-group">
+                    <h3 class="parents-hero-label">Padres del novio</h3>
+                    <div class="parents-hero-names">
+                        <p style="font-size:1.1em;">Jos&eacute; Guadalupe Posada Cruces</p>
+                        <span class="ampersand-small">&amp;</span>
+                        <p style="font-size:1.1em;">Juana Magdalena Oliva Castillo</p>
+                    </div>
+                </div>
+
+                <div class="parents-hero-group" style="margin-top:2rem;">
+                    <h3 class="parents-hero-label">Padres de la novia</h3>
+                    <div class="parents-hero-names">
+                        <p style="font-size:1.1em;">Antonio Dur&aacute;n Torres</p>
+                        <span class="ampersand-small">&amp;</span>
+                        <p style="font-size:1.1em;">Teresita Mora Llanos</p>
+                    </div>
+                </div>
+
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 3. Quote Section -->
+        <section class="content-section" data-section="quote">
+            <div class="hero-content">
+                <p class="hero-subtitle">CON TODO NUESTRO AMOR</p>
+                <h1 class="hero-title">NUESTRA HISTORIA</h1>
+
+                <div class="quote-hero-text">
+                    <p class="quote-message">Nos conocimos en 5to de primaria, nos hicimos los mejores amigos, y el amor lleg&oacute; en la secundaria. A pesar de los obst&aacute;culos, nunca dejamos de luchar por lo nuestro. Hoy, despu&eacute;s de a&ntilde;os juntos, celebramos el inicio de nuestra vida como esposos.</p>
+                </div>
+
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 4. Countdown Section -->
+        <section class="content-section" data-section="countdown">
+            <div class="hero-content">
+                <p class="hero-subtitle">NUESTRO GRAN DÍA EN</p>
+                <h1 class="hero-title">CUENTA REGRESIVA</h1>
+
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Días</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Horas</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutos</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Segundos</span>
+                    </div>
+                </div>
+
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 5. Ceremony Section -->
+        <section class="content-section" data-section="ceremony">
+            <div class="hero-content">
+                <p class="hero-subtitle">TE ESPERAMOS EN</p>
+                <h1 class="hero-title">CEREMONIA RELIGIOSA</h1>
+
+                <div class="event-hero-details">
+                    <div class="event-icon"><i class="fas fa-church"></i></div>
+                    <p class="event-time">4:00 PM</p>
+                    <p class="event-location">Parroquia San Juan Bautista de la Salle</p>
+                    <p class="event-address">Le&oacute;n, Guanajuato</p>
+                    <p class="event-suggestion"><i class="far fa-clock"></i> Sugerimos llegar 15 minutos antes</p>
+                    <div class="map-buttons">
+                        <a href="https://www.google.com/maps/search/Parroquia+San+Juan+Bautista+de+la+Salle+Leon+Guanajuato" target="_blank" class="btn-map">
+                            <i class="fas fa-map-marked-alt"></i> Google Maps
+                        </a>
+                        <a href="https://www.waze.com/ul?q=Parroquia+San+Juan+Bautista+de+la+Salle+Leon&navigate=yes" target="_blank" class="btn-map btn-waze">
+                            <i class="fas fa-car"></i> Waze
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 6. Reception Section -->
+        <section class="content-section" data-section="reception">
+            <div class="hero-content">
+                <p class="hero-subtitle">CELEBREMOS EN</p>
+                <h1 class="hero-title">RECEPCIÓN</h1>
+
+                <div class="event-hero-details">
+                    <div class="event-icon"><i class="fas fa-glass-cheers"></i></div>
+                    <p class="event-time">6:00 PM</p>
+                    <p class="event-location">Quinta Palomares</p>
+                    <p class="event-address">Le&oacute;n, Guanajuato</p>
+                    <p class="event-suggestion"><i class="far fa-clock"></i> Sugerimos llegar 15 minutos antes</p>
+                    <div class="map-buttons">
+                        <a href="https://www.google.com/maps/search/Quinta+Palomares+Leon+Guanajuato" target="_blank" class="btn-map">
+                            <i class="fas fa-map-marked-alt"></i> Google Maps
+                        </a>
+                        <a href="https://www.waze.com/ul?q=Quinta+Palomares+Leon+Guanajuato&navigate=yes" target="_blank" class="btn-map btn-waze">
+                            <i class="fas fa-car"></i> Waze
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 8. Dress Code Section -->
+        <section class="content-section" data-section="dresscode">
+            <div class="hero-content">
+                <p class="hero-subtitle">CÓDIGO DE</p>
+                <h1 class="hero-title">VESTIMENTA</h1>
+
+                <div class="dresscode-content">
+                    <div class="event-icon"><i class="fas fa-user-tie"></i></div>
+                    <p class="dress-code-text">Formal</p>
+                </div>
+
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 9. Gifts Section -->
+        <section class="content-section" data-section="gifts">
+            <div class="hero-content">
+                <p class="hero-subtitle">SI DESEAS OBSEQUIARNOS</p>
+                <h1 class="hero-title">MESA DE REGALOS</h1>
+
+                <p class="gifts-subtitle">Tu presencia es nuestro mejor regalo</p>
+
+                <div class="gifts-hero-content">
+                    <div class="event-icon"><i class="fas fa-gift"></i></div>
+                    <h3>Lluvia de Sobres</h3>
+                    <p>Puedes obsequiarnos un sobre el día del evento</p>
+                </div>
+
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 10. Social Media Section -->
+        <section class="content-section" data-section="social">
+            <div class="hero-content">
+                <p class="hero-subtitle">QUEREMOS VER TUS FOTOS</p>
+                <h1 class="hero-title">COMPARTE CON NOSOTROS</h1>
+
+                <p class="social-subtitle">Usa nuestro hashtag en redes sociales</p>
+                <h3 class="hashtag">#BodaJuanPabloYMariaJose</h3>
+
+                <div class="social-links">
+                    <a href="#" target="_blank" class="social-link">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </a>
+                    <a href="#" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                </div>
+
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 12. Info Section -->
+        <section class="content-section" data-section="info">
+            <div class="hero-content">
+                <p class="hero-subtitle">DETALLES QUE DEBES SABER</p>
+                <h1 class="hero-title">INFORMACIÓN</h1>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-music"></i></div>
+                        <h3>Música</h3>
+                        <p>¡Habrá música en vivo y DJ!</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-utensils"></i></div>
+                        <h3>Comida y Bebida</h3>
+                        <p>Cena completa y barra libre</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-parking"></i></div>
+                        <h3>Estacionamiento</h3>
+                        <p>Habrá estacionamiento disponible</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon"><i class="fas fa-church"></i></div>
+                        <h3>Ceremonia</h3>
+                        <p>Todos pueden asistir</p>
+                    </div>
+                </div>
+
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+    </main>
+
+        <!-- RSVP -->
+        <section id="rsvp">
+            <h2 class="section-title">Confirma tu Asistencia</h2>
+            <p style="text-align:center;margin-bottom:28px;opacity:.8;">
+                Por favor confirma antes del <span id="confirmacionLimite">20 de junio de 2026</span>
+            </p>
+            <div id="personalizedWelcome" style="display:none;text-align:center;margin-bottom:24px;padding:20px;background:rgba(255,255,255,0.07);border-radius:12px;">
+                <p id="guestWelcomeText" style="font-size:1.1rem;margin-bottom:8px;"></p>
+                <p id="guestPassesText" style="opacity:.75;font-size:.95rem;"></p>
+            </div>
+            <div class="rsvp-form">
+                <form id="rsvpForm">
+                    <div class="form-group">
+                        <label for="name">Nombre Completo *</label>
+                        <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Número de personas *</label>
+                        <select id="guests" name="guests" required>
+                            <option value="">Selecciona...</option>
+                            <option value="1">1 persona</option>
+                            <option value="2">2 personas</option>
+                            <option value="3">3 personas</option>
+                            <option value="4">4 personas</option>
+                            <option value="5">5 personas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="attendance">¿Confirmas tu asistencia? *</label>
+                        <select id="attendance" name="attendance" required>
+                            <option value="">Selecciona...</option>
+                            <option value="si">Sí, asistiré</option>
+                            <option value="no">No podré asistir</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje (Opcional)</label>
+                        <textarea id="message" name="message" placeholder="Déjame un mensaje..."></textarea>
+                    </div>
+                    <div style="text-align:center;">
+                        <button type="submit" style="background:var(--gold,#c9a84c);color:#1a1a2e;border:none;padding:14px 36px;border-radius:25px;font-size:1rem;font-weight:bold;cursor:pointer;">Enviar Confirmación</button>
+                    </div>
+                </form>
+                <div id="successMessage">
+                    ✓ ¡Gracias! Tu confirmación ha sido registrada.
+                </div>
+            </div>
+        </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-message">&iexcl;Gracias por acompa&ntilde;arnos en este d&iacute;a tan especial!</p>
+            <p class="footer-names">Juan Pablo & Mar&iacute;a Jos&eacute;</p>
+            <p style="font-size:.85rem;opacity:.6;margin-top:.3rem;">Nuestra Boda</p>
+            <p class="footer-date">27.06.2026</p>
+            <p class="footer-credit">Invitaciones, Fotografía, Video y Dron: Foro 7 - Arturo Cruz - 477-920-3776</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="js/visitas.js?v=1"></script>
+
+    <script src="js/rsvp-guest.js"></script>
+<script src="js/foro7-footer.js"></script>
+<script>
+// Splash handler
+(function(){
+    const splash = document.getElementById('splashScreen');
+    const btn = document.getElementById('openInvitation');
+    const audio = document.getElementById('background-music');
+    if (!btn || !splash) return;
+    btn.addEventListener('click', function(){
+        splash.classList.add('hidden');
+        if (audio) audio.play().catch(()=>{});
+    });
+})();
+</script>
+    <script>
+    (function () {
+        const token = new URLSearchParams(window.location.search).get('inv');
+        if (token) return;
+        const SB_URL  = 'https://nzpujmlienzfetqcgsxz.supabase.co';
+        const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56cHVqbWxpZW56ZmV0cWNnc3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2ODYzMzYsImV4cCI6MjA5MDI2MjMzNn0.xl3lsb-KYj5tVLKTnzpbsdEGoV9ySnswH4eyRuyEH1s';
+        const SB_H    = { 'apikey': SB_ANON, 'Authorization': 'Bearer ' + SB_ANON, 'Content-Type': 'application/json' };
+        const SLUG    = 'boda-juan-pablo-maria-jose';
+        const WA_NUMS = ['5214721564478'];
+        const NOMBRE_EVENTO = 'la Boda de Juan Pablo y Mar\u00eda Jos\u00e9';
+
+        function attachHandler() {
+            const form = document.getElementById('rsvpForm');
+            if (!form) return;
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const nombre  = (document.getElementById('name')?.value || '').trim();
+                const pases   = parseInt(document.getElementById('guests')?.value || '1');
+                const asiste  = document.getElementById('attendance')?.value === 'si';
+                const mensaje = (document.getElementById('message')?.value || '').trim();
+                if (!nombre) return;
+                const btn = form.querySelector('button[type="submit"]');
+                if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
+                try {
+                    const evR = await fetch(`${SB_URL}/rest/v1/eventos?slug=eq.${SLUG}&select=id&limit=1`, { headers: SB_H });
+                    const [ev] = await evR.json();
+                    if (ev?.id) {
+                        await fetch(`${SB_URL}/rest/v1/invitados`, {
+                            method: 'POST',
+                            headers: { ...SB_H, 'Prefer': 'return=minimal' },
+                            body: JSON.stringify({ evento_id: ev.id, nombre, pases_asignados: pases, pases_confirmados: pases, asiste, status: asiste ? 'confirmada' : 'declinada', mensaje: mensaje || null, fecha_confirmacion: new Date().toISOString() })
+                        });
+                    }
+                } catch (err) {}
+                form.style.display = 'none';
+                const succ = document.getElementById('successMessage');
+                if (succ) succ.style.display = 'block';
+                const txt = asiste
+                    ? `Hola, confirmo mi asistencia a ${NOMBRE_EVENTO}.\nNombre: ${nombre}\nPersonas: ${pases}${mensaje ? '\nMensaje: ' + mensaje : ''}`
+                    : `Hola, lamentablemente no podré asistir a ${NOMBRE_EVENTO}.\nNombre: ${nombre}${mensaje ? '\nMensaje: ' + mensaje : ''}`;
+                WA_NUMS.forEach((num, i) => setTimeout(() => window.open(`https://wa.me/${num}?text=${encodeURIComponent(txt)}`, '_blank'), 400 + i * 600));
+            });
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', attachHandler);
+        else attachHandler();
+    })();
+    </script>
+<script>window.EVENTO_SLUG='boda-juan-pablo-maria-jose';</script>
+<script src="js/evento-loader.js"></script>
+<script>
+(function(){
+    var token=new URLSearchParams(window.location.search).get('inv');
+    var btn=document.getElementById('openInvitation');
+    if(btn)btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+    if(!token)return;
+    var SB_URL='https://nzpujmlienzfetqcgsxz.supabase.co';
+    var SB_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56cHVqbWxpZW56ZmV0cWNnc3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2ODYzMzYsImV4cCI6MjA5MDI2MjMzNn0.xl3lsb-KYj5tVLKTnzpbsdEGoV9ySnswH4eyRuyEH1s';
+    fetch(SB_URL+'/rest/v1/invitados?token=eq.'+encodeURIComponent(token)+'&select=nombre,pases_asignados&limit=1',{headers:{'apikey':SB_ANON,'Authorization':'Bearer '+SB_ANON}})
+    .then(function(r){return r.json();})
+    .then(function(rows){
+        if(!rows||!rows.length)return;
+        var g=rows[0];
+        var sub=document.getElementById('splashSubtitle');
+        var dateEl=document.getElementById('splashDate');
+        var gEl=document.getElementById('splashGuest');
+        var pEl=document.getElementById('splashPases');
+        if(sub)sub.textContent='Hola,';
+        document.querySelectorAll('.splash-names,.splash-name,.splash-title').forEach(function(el){el.style.display='none';});
+        if(dateEl)dateEl.style.display='none';
+        if(gEl){gEl.textContent=g.nombre;gEl.style.display='block';}
+        if(pEl){pEl.textContent='🎟 '+g.pases_asignados+' '+(g.pases_asignados===1?'pase':'pases');pEl.style.display='block';}
+        if(btn)btn.textContent='Ver mi Invitación';
+    }).catch(function(){});
+})();
+</script>
+</body>
+</html>

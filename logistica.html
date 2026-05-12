@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logística del Evento - Bodas de Diamante - Refugio & Juan Jesús</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #4A6B54 0%, #A3B18A 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .logistics-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4A6B54 0%, #A3B18A 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.2em; opacity: 0.9; }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            display: inline-block;
+            background: white;
+            color: #4A6B54;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.95em;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-links a.active { background: #4A6B54; color: white; }
+
+        .content { padding: 30px; }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #4A6B54, #A3B18A);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 100px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 38px;
+            top: 0;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #4A6B54;
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px #4A6B54;
+        }
+
+        .time-badge {
+            display: inline-block;
+            background: #4A6B54;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .time-badge.special { background: #D4AF37; color: #333; }
+
+        .timeline-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #4A6B54;
+        }
+
+        .timeline-content h3 { color: #333; margin-bottom: 10px; font-size: 1.3em; }
+        .timeline-content p { color: #666; line-height: 1.6; margin: 5px 0; }
+        .timeline-content ul { margin-top: 10px; padding-left: 20px; }
+        .timeline-content li { margin: 5px 0; color: #666; }
+
+        .location-card {
+            background: white;
+            border: 2px solid #4A6B54;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .location-card h4 { color: #4A6B54; margin-bottom: 10px; }
+
+        .location-card a {
+            display: inline-block;
+            background: #4A6B54;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .location-card a:hover { background: #3d5a46; transform: translateX(5px); }
+
+        .section { margin: 30px 0; }
+
+        .section h2 {
+            color: #4A6B54;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #A3B18A;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.1));
+            border-left: 4px solid #D4AF37;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .highlight-box h3 { color: #D4AF37; margin-bottom: 15px; }
+
+        .contact-section {
+            background: linear-gradient(135deg, #4A6B54 0%, #A3B18A 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .contact-section h2 { color: white; border: none; margin-bottom: 20px; }
+        .contact-section p { font-size: 1.1em; margin: 10px 0; }
+        .contact-section a { color: white; text-decoration: underline; }
+
+        .pending-tag {
+            display: inline-block;
+            background: #fbbf24;
+            color: #78350f;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: .85em;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before { left: 20px; }
+            .timeline-item { padding-left: 60px; }
+            .timeline-item::before { left: 8px; }
+            .header h1 { font-size: 1.8em; }
+        }
+
+        .print-button {
+            background: #4A6B54;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .print-button:hover { background: #3d5a46; }
+
+        @media print {
+            body { background: white; }
+            .print-button, .nav-links { display: none; }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+    <div class="logistics-container">
+        <div class="header">
+            <h1>Logistica del Evento</h1>
+            <p>Bodas de Diamante — Ma. Refugio & Juan Jes&uacute;s — 60 Aniversario</p>
+            <p style="font-size: 1em; margin-top: 10px;">S&aacute;bado, 18 de Abril de 2026</p>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Invitacion</a>
+            <a href="contrato.html">Contrato</a>
+            <a href="logistica.html" class="active">Logistica</a>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>DIA DEL EVENTO</h2>
+                <p style="color: #666; margin-bottom: 20px;"><strong>Fecha:</strong> Sabado 18 de Abril, 2026</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="time-badge">10:00 AM</span>
+                        <div class="timeline-content">
+                            <h3>Llegada Foro 7 — Preparaci&oacute;n</h3>
+                            <p><strong>Ubicaci&oacute;n:</strong> <span class="pending-tag">Por confirmar — casa de los festejados o punto de encuentro</span></p>
+                            <p>Llegamos 2 horas antes de la misa para:</p>
+                            <ul>
+                                <li>Sesi&oacute;n fotogr&aacute;fica con los festejados y su familia</li>
+                                <li>Preparaci&oacute;n de equipo de video y foto</li>
+                                <li>Tomas de los preparativos (detalles, familia, recuerdos de 60 a&ntilde;os)</li>
+                                <li>Tomas con dron del lugar</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="time-badge">11:30 AM</span>
+                        <div class="timeline-content">
+                            <h3>Traslado al Templo</h3>
+                            <p>El equipo se traslada a Pabileros para preparar equipo antes de la ceremonia</p>
+                            <ul>
+                                <li>Configuraci&oacute;n de equipo en templo</li>
+                                <li>Tomas previas del templo y decoraci&oacute;n</li>
+                                <li>Preparaci&oacute;n del dron para tomas a&eacute;reas</li>
+                            </ul>
+                            <div class="location-card">
+                                <h4>Templo — Pabileros</h4>
+                                <p>Pabileros, Gto.</p>
+                                <a href="https://www.google.com/maps/search/Pabileros+Guanajuato" target="_blank">Ver en Google Maps</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="time-badge special">12:00 PM</span>
+                        <div class="timeline-content">
+                            <h3>Misa de Acci&oacute;n de Gracias — 60 Aniversario</h3>
+                            <p><strong>Duraci&oacute;n:</strong> Aproximadamente 1 hora</p>
+                            <p><strong>Cobertura incluye:</strong></p>
+                            <ul>
+                                <li>Llegada de los festejados, hijos e invitados</li>
+                                <li>Entrada de Ma. Refugio y Juan Jes&uacute;s</li>
+                                <li>Misa de Acci&oacute;n de Gracias completa</li>
+                                <li>Renovaci&oacute;n de votos matrimoniales (si aplica)</li>
+                                <li>Bendici&oacute;n especial del sacerdote</li>
+                                <li>Salida de los festejados</li>
+                                <li>Fotos con hijos, nietos y familiares en el templo</li>
+                                <li>Tomas con dron del templo y alrededores</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="time-badge">1:00 PM</span>
+                        <div class="timeline-content">
+                            <h3>Traslado a la Recepci&oacute;n</h3>
+                            <p>Traslado del equipo al campo de beisbol para preparar la celebraci&oacute;n</p>
+                            <div class="location-card">
+                                <h4>Campo de Beisbol — Pabileros</h4>
+                                <p>Pabileros, Gto.</p>
+                                <a href="https://www.google.com/maps/search/Campo+de+Beisbol+Pabileros+Guanajuato" target="_blank">Ver en Google Maps</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="time-badge special">1:30 PM - 9:30 PM</span>
+                        <div class="timeline-content">
+                            <h3>Recepci&oacute;n — Celebraci&oacute;n de 60 A&ntilde;os (8 horas de cobertura)</h3>
+                            <p><strong>Ubicaci&oacute;n:</strong> Campo de beisbol, Pabileros</p>
+                            <p style="margin-top: 15px;"><strong>Eventos a cubrir:</strong></p>
+                            <ul>
+                                <li>Entrada de los festejados acompa&ntilde;ados de sus hijos</li>
+                                <li>Vals de aniversario — <strong>con iluminaci&oacute;n especial incluida</strong></li>
+                                <li>Baile con hijos y nietos</li>
+                                <li>Brindis y palabras de los hijos</li>
+                                <li>Pastel de aniversario</li>
+                                <li>M&aacute;quina de CO2 para lanzar papel picado</li>
+                                <li>Proyecci&oacute;n de slideshow de 60 a&ntilde;os (fotos del recuerdo)</li>
+                                <li>Baile general y ambiente</li>
+                                <li>Fotos con hijos, nietos, familiares e invitados</li>
+                                <li>Tomas a&eacute;reas con dron del lugar y los invitados</li>
+                            </ul>
+
+                            <div class="highlight-box" style="margin-top: 20px;">
+                                <h3>Clip para Proyecci&oacute;n</h3>
+                                <p><strong>Momento:</strong> Durante la recepci&oacute;n</p>
+                                <p>Proyecci&oacute;n del videoclip con fotos de los 60 a&ntilde;os juntos, editado y musicalizado — un recorrido por su historia de amor</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="time-badge">9:30 PM</span>
+                        <div class="timeline-content">
+                            <h3>Fin de la Cobertura</h3>
+                            <p>El equipo de producci&oacute;n concluye la cobertura del evento (8 horas de recepci&oacute;n + 1 hora de ceremonia)</p>
+                            <p><strong>Nota:</strong> Hora extra de video tiene un costo de $500 MXN</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Servicios Contratados</h2>
+                <div class="highlight-box">
+                    <h3>Paquete B — Fotografia y Video — $9,000 MXN</h3>
+                    <p style="margin-bottom: 10px;">Cobertura: Sesi&oacute;n + 1 hr Misa de Acci&oacute;n de Gracias + 8 hrs recepci&oacute;n</p>
+                    <ul>
+                        <li>85 Fotograf&iacute;as impresas tama&ntilde;o 6x8" (15x20 cm)</li>
+                        <li>1 Pel&iacute;cula master de 2:50 hr en USB formato FHD + duplicado</li>
+                        <li>1 Clip de video resumen del evento</li>
+                        <li>1 Clip de video de todas las fotos, editado y musicalizado</li>
+                        <li>1 Ampliaci&oacute;n de 50x40 cm retocada en marco fald&oacute;n</li>
+                        <li>1 Caja impresa para la USB</li>
+                        <li>M&aacute;quina de CO2 para lanzar papel picado</li>
+                        <li>Iluminaci&oacute;n para vals de aniversario</li>
+                        <li>Dron — video en formato FHD (incluido, descuento aplicado)</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-weight: bold; color: #27ae60;">
+                        Total: $9,000 MXN (dron incluido sin costo extra)
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Estado de Pago</h2>
+                <div class="highlight-box">
+                    <ul>
+                        <li><strong>Apartado:</strong> $2,000 MXN — pagado el 17 de marzo de 2026 (efectivo)</li>
+                        <li><strong>Saldo restante:</strong> $7,000 MXN — a liquidar 8 d&iacute;as antes del evento (10 de abril de 2026)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Equipo de Produccion</h2>
+                <div class="highlight-box">
+                    <h3>Equipos para el evento:</h3>
+                    <ul>
+                        <li>1 camara profesional de fotografia + 3 flashes</li>
+                        <li>1 camara de video FHD</li>
+                        <li>1 dron profesional FHD</li>
+                        <li>Iluminacion LED para vals</li>
+                        <li>Maquina de CO2</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Entrega de Material</h2>
+                <div class="highlight-box">
+                    <h3>Lo que recibiran (segun contrato):</h3>
+                    <ul>
+                        <li>85 fotos del evento impresas 6x8"</li>
+                        <li>1 ampliacion 50x40 cm en marco faldon</li>
+                        <li>2 memorias USB con pelicula master FHD (original + duplicado)</li>
+                        <li>1 clip de video resumen</li>
+                        <li>1 clip de video con todas las fotos editado y musicalizado</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-weight: bold;">
+                        Tiempo de entrega: Maximo 60 dias habiles despues del evento
+                    </p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Pendientes por Confirmar</h2>
+                <div class="highlight-box">
+                    <ul>
+                        <li><span class="pending-tag">Pendiente</span> Direcci&oacute;n exacta para la sesi&oacute;n previa / preparativos</li>
+                        <li><span class="pending-tag">Pendiente</span> Nombres de hijos y nietos para la invitaci&oacute;n</li>
+                        <li><span class="pending-tag">Pendiente</span> Hora exacta de inicio de recepci&oacute;n</li>
+                        <li><span class="pending-tag">Pendiente</span> Direcci&oacute;n exacta del campo de beisbol para Google Maps</li>
+                        <li><span class="pending-tag">Pendiente</span> Fotos antiguas de los 60 a&ntilde;os para el slideshow</li>
+                        <li><span class="pending-tag">Pendiente</span> Liquidaci&oacute;n del saldo: 10 de abril de 2026</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h2>Contacto</h2>
+                <p><strong>Foro 7 Producciones — Arturo Cruz Armenta</strong></p>
+                <p>Padilla 112, Cumbres de Arbide, Leon, Gto.</p>
+                <p>WhatsApp: <a href="https://wa.me/524779203776">477 920 3776</a></p>
+                <p style="margin-top: 15px;">
+                    <strong>Cliente:</strong> Ma. Refugio Hernandez Morales — <a href="tel:4721564478">472 156 4478</a>
+                </p>
+            </div>
+
+            <button class="print-button" onclick="window.print()">Imprimir Logistica</button>
+        </div>
+    </div>
+    <script src="js/visitas.js?v=1"></script>
+<script src="js/foro7-footer.js"></script>
+</body>
+</html>
