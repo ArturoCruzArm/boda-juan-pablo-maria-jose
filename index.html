@@ -88,6 +88,7 @@
         <button class="nav-dot" data-section="dresscode" data-label="Vestimenta" aria-label="Ir a vestimenta"></button>
         <button class="nav-dot" data-section="gifts" data-label="Regalos" aria-label="Ir a regalos"></button>
         <button class="nav-dot" data-section="social" data-label="Redes" aria-label="Ir a redes sociales"></button>
+        <button class="nav-dot" data-section="video" data-label="Video" aria-label="Ir a video"></button>
         <button class="nav-dot" data-section="info" data-label="Info" aria-label="Ir a información"></button>
     </nav>
 
@@ -312,6 +313,20 @@
             </div>
         </section>
 
+        <!-- 11. Video Section -->
+        <section class="content-section" data-section="video">
+            <div class="hero-content">
+                <p class="hero-subtitle">NUESTRA HISTORIA EN</p>
+                <h1 class="hero-title">VIDEO</h1>
+
+                <div class="video-container" style="max-width:800px;margin:1.5rem auto;position:relative;width:100%;padding-bottom:56.25%;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+                    <div id="ytPlayer" style="position:absolute;inset:0;width:100%;height:100%;"></div>
+                </div>
+
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
         <!-- 12. Info Section -->
         <section class="content-section" data-section="info">
             <div class="hero-content">
@@ -487,6 +502,47 @@
         if(btn)btn.textContent='Ver mi Invitación';
     }).catch(function(){});
 })();
+</script>
+<script>
+// YouTube IFrame API — max quality (highres/hd1080)
+var tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+document.head.appendChild(tag);
+var ytPlayerInstance;
+function onYouTubeIframeAPIReady() {
+    ytPlayerInstance = new YT.Player('ytPlayer', {
+        videoId: 'wcPtAB-lvVY',
+        playerVars: {
+            rel: 0,
+            modestbranding: 1,
+            playsinline: 1,
+            vq: 'hd1080'
+        },
+        events: {
+            onReady: function(e) {
+                e.target.setPlaybackQuality('highres');
+            },
+            onStateChange: function(e) {
+                var bgMusic = document.getElementById('background-music');
+                var musicIcon = document.getElementById('music-icon');
+                if (e.data === YT.PlayerState.PLAYING) {
+                    e.target.setPlaybackQuality('highres');
+                    if (bgMusic && !bgMusic.paused) {
+                        bgMusic.pause();
+                        if (musicIcon) musicIcon.className = 'fas fa-volume-mute';
+                        window._musicPausedByVideo = true;
+                    }
+                } else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) {
+                    if (bgMusic && window._musicPausedByVideo) {
+                        bgMusic.play().catch(function(){});
+                        if (musicIcon) musicIcon.className = 'fas fa-volume-up';
+                        window._musicPausedByVideo = false;
+                    }
+                }
+            }
+        }
+    });
+}
 </script>
 </body>
 </html>
