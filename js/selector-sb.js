@@ -1,10 +1,10 @@
 // selector-sb.js - Supabase sync + Realtime para Foro 7
-// Slug: boda-refugio-juan-jesus | Storage key: boda_refugio_juan_jesus_photo_selections
+// Slug: boda-juan-pablo-maria-jose | Storage key: boda_juan_pablo_maria_jose_photo_selections
 (function () {
     var SUPABASE_URL  = 'https://nzpujmlienzfetqcgsxz.supabase.co';
     var SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56cHVqbWxpZW56ZmV0cWNnc3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2ODYzMzYsImV4cCI6MjA5MDI2MjMzNn0.xl3lsb-KYj5tVLKTnzpbsdEGoV9ySnswH4eyRuyEH1s';
-    var EVENTO_SLUG   = 'boda-refugio-juan-jesus';
-    var SB_KEY        = 'boda_refugio_juan_jesus_photo_selections';
+    var EVENTO_SLUG   = 'boda-juan-pablo-maria-jose';
+    var SB_KEY        = 'boda_juan_pablo_maria_jose_photo_selections';
     var SB_H = { 'apikey': SUPABASE_ANON, 'Authorization': 'Bearer ' + SUPABASE_ANON, 'Content-Type': 'application/json' };
     var CURRENT_CODE_VERSION = 3;
 
